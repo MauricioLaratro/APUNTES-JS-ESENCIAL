@@ -1,0 +1,954 @@
+FORMAS DE CREAR CODIGO EN JS
+
+1- la console del devs tools: en ella podemos codear como si fuera nuestro editor de codigo
+
+2- tambien podemos añadir codigo js desde la consola con node js, pero no podemos trabajos con nada del DOM, obviamente.
+
+3- Tambien podemos validar nuestros codigos js desde el mismo vsc, con un plugin llamado: QUOKKA
+Con este pluggin podemos trabajar tanto el entorno del back (node.js) y la parte del front (el DOM), dentro del mismo editor de codigo, sin la necesidad de abrir el navegador, ni la terminal.
+Para utilizarlo una vez instalado debemos presionar dentro del editor:
+1- Ctrl + P, se nos abrira un buscador arriba.
+2- Escribir >quokka.
+3- Seleccionar "new file"
+4- Seleccionar "JavaScript".
+Despues de hacer esto, se nos abrira un archivo en el edito y debajo un output donde se estara ejecutando todos los comandos de js que escribamos en el editor
+
+
+
+SENTENCIAS, EXPRESIONES y OPERADORES:
+
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements
+
+-Las aplicaciones de js se componen de sentencias con una sintaxis propia. Una sentencia puede estar formada por multiples lineas. Puede haber varias sentencias en una sola linea si separamos cada una de las sentencias por un punto y coma. NO es una palabra clave, sino un grupo de palabras claves. (Para las sentencias que ocupan mas de una linea debemos encasillarlas en {}, de lo contrario a apretar "enter" se separara la sentencia).
+
+-Los operadores pueden ser matematicos, que son los simbolos matematicos por ejeplo en esta suma: 4 + 4, el operador es el + y los 4 son los operandos.
+Tambien existen los operadores logicos...
+
+Y los operadores de comparacion que son: ==  y tambien ===.
+
+Las EXPRESIONES: son los conjuntos de valores, operadores y sentencias, que nos regresan un nuevo valor.
+
+
+DECLARACIONES Y VARIABLES:
+(SCOPES: son basicamente donde van las variables, cual es el alcance de la misma, en que parte de nuestro programa es reconocible dicha variable)
+
+
+-var: al declarar con var, esta, se vuelve una declaracion con scoup de alcance global, es decir que todo nuestro programa va a estar entendiendo esta variable
+
+-let: al declarar con let, el alcance de su scope se extiende unicamente al bloque {}.
+(Como se pueden tener bloques dentro de otro bloque, las declaraciones let se establecen segun su bloque, pero si: 
+{
+let lastname = 'Laratro' *dara como resultado laratro*
+{
+si en esta linea llamo a lastname, no arrojara resultado porque no puedo llamarla antes de su linea de declaracion, es decir la que esta por debajo. Pero si la linea por debajo no existiera, el resultado seria Laratro, es decir la declaracion del bloque padre.
+let lastname = 'Alarcon' *dara como resultado alarcon*
+}
+})
+
+(PEGAR IMAGEN DE VAR-LET CUANDO PASEMOS A NOTAS DEL CELULAR)
+
+-const: Esta tambien se declara por bloque, la diferencia radica en que las declaraciones let se pueden redeclarar dentro de un bloque y las declaraciones const NO, es decir no se puede cambiar el valor de una declaracion const.
+
+Aclaración: a let se le puede cambiar el valor de la siguiente manera:
+let lastname = 'Laratro'
+       lastname = 'Alarcon'
+Con var se puede hacer lo mismo pero tambien se puede redeclarar dentro de su mismo scope, es decir
+var name = 'Mauricio'
+var name = 'Javier'
+Sin embargo, la redeclaracion es muy raro de utilizar. Es mas, se recomienda utilizar var, lo menos posible.
+
+
+TIPOS DE DATOS PRIMITIVOS EN JS (IMPORTANTE):
+
+Los tipos primitivos, van asignados a una variables y cuando son asignados, se convierten en el tipo de valor de esa dicha variable y estos tipos de valores pueden ser de cualquiera de los 8 tipos primitivos:
+
+1- STRINGS:
+cuando hablamos de una varible que posee información de texto, decimos que su tipo de dato es un string
+Son los que se asignan a un tipo de valor por medio de ' ' o con " " y tambien ` `(comillas simples o comillas dobles, tambien con backticks)
+Por ejemplo:
+const name = 'Mauricio'
+'Mauricio' seria el tipo primitivo string.
+Al crear una variable con contenido de texto , automáticamente, esa variable pasa a tener a su disposición todas las propiedades (variables) y métodos (funciones) disponibles para este tipo de dato.
+
+2- BOOLEANO:
+En JavaScript una variable es booleana si se le asigna como contenido true ó false. Estas variables se usan para almacenar información del tipo sí / no, cumple / no cumple, verdadero / falso, existe / no existe, es decir, información que únicamente puede tener dos estados.
+Ejemplo:
+const a = true
+Este tipo primitivo sirven entre otras cosas para hacer comparaciones, entre datos.
+
+3- NUMBER:
+s un objeto primitivo envolvente que permite representar y manipular valores numéricos cómo 37 o -9.25. El constructor Number contiene constantes y métodos para trabajar con números. Valores de otro tipo pueden ser convertidos a números usando la función Number().
+Con este tipo primitivo, podes hacer operaciones matematicas.
+
+4- OBJECT:
+Es usado para guardar muchos valores por dentro, recibiendo propiedades o metodos.
+Ejemplo:
+const x = {
+name: 'Mauricio',
+lastname: 'Laratro'
+}
+Es decir se pueden realizar varias declaraciones dentro de un mismo objeto, si imprimimos fuera de el lastname, nos daria como resultado Laratro.
+los object siempre se inicializan con {}.
+
+5- NULL:
+Es un literal de Javascript que representa intencionalmente un valor nulo o "vacío".
+Se utiliza cuando queremos inicializar una variable, de manera explicita, pero no sabemos que valor va a contener, entonces utilizamos por ejemplo:
+let name = null
+(Excepto por const, donde no podemos utilizar null de esta manera, ya que no se pueden reasignar las const).
+
+6- UNDEFINED:
+Una variable a la que no se le ha asignado valor, o no se ha declarado en absoluto (no se declara, no existe) son de tipo undefined . Un método o sentencia también devuelve undefined si la variable que se está evaluando no tiene asignado un valor.
+
+7- BigInt:
+es un tipo de dato de Javascript  que nace con la idea de permitir representar valores muy grandes, de una forma relativamente sencilla y compatible con lo que ya existe.
+Se utiliza para cuando queremos usar un numero mayor al maximo posible en numeros enteros dentro de js, ya que tienen un limite.
+Ejemplo:
+let z = 2n
+se agrega una n al final de los numeros.
+Solamente se pueden hacer operaciones matatematicas entre numeros BigInts, no se puede hacer una operacion mesclando BigInts y numeros enteros normales.
+ejemplo:
+z * 3n = 6n
+Otra forma de crear un BigInt es usando su propio constructor y entre parentesis poner el numero que queremos crear. Por ejeplo:
+BigInt(6).
+
+8- SYMBOL:
+Symbol es un tipo de datos cuyos valores son únicos e immutables. Dichos valores pueden ser utilizados como identificadores (claves) de las propiedades de los objetos. Cada valor del tipo Symbol tiene asociado un valor del tipo String o Undefined que sirve únicamente como descripción del símbolo.
+La forma de crear un symbol es:
+Symbol('xxx xxx xxx')
+
+
+
+COMO VALIDAR LOS TIPOS PRIMITIVOS:
+Para esto, debemos utilizar el operador
+TYPEOF:
+typeof(x) = object
+debemos utilizar typeof y entre parentesis el nombre del tipo que queremos validar (Es decir saber que tipo de dato es), esto nos arrojara como resultado el tipo de vlaor primitivo que es.
+En lo unico que no podemos utilizar typeof es poniendo entre parentesis (null), ya que existe un bug en JS que dara como resultado que null es un object y sabemos que no es asi, es otro tipo de valor primitivo.
+
+
+STRING
+Los strigns se pueden unir, por medio de una suma, por ejemplo:
+Const name = 'Mauricio'
+Const lastname = 'Laratro'
+
+Const fullname = name + lastname.
+
+Esto haria que el valor de fullname sea = MauricioLaratro.
+Si querenmos que el valor no este pegado, si no, que este separado por espacios debemos agregar a la sumas, strigns vacios que seran los espacios. Por ejemplo:
+Const fullname = name + ' ' + lasname
+Esto daria como valor de fullname = Mauricio Laratro.
+Si los strings son muchos, esto se puede volver engorroso y para solventar esto, se pueden utilizar los templates literals, que son los strigns expresados con ` `, ya que dentro de ellos podemos utilizar expresiones, con el simbolo ${} y las llaves. Por ejemplo:
+Const fullname = `${name} ${lastname} `
+Esto tambien daria como resultado Mauricio Laratro, separado por un espacio y de esta manera es mucho mas legible el codigo.
+
+Los strings traen con ellos 2 cosas inerentes:
+
+PROPIEDADES:
+Se caracterizan por llamarse utilizando un "." que se llama "docnotation"
+una propiedad que podemos utilizar es LENGTH, que sirve para ver cual es la longitud del string. Por ejemplo:
+fullname.length
+esto imprimira cuantos caracteres tiene el string completo que esta dentro de la variable "fullname"
+
+
+METODOS:
+A diferencia de las propiedades al metodo hay que agregarle unos (). Por ejemplo:
+fullname.charAt()
+charAt sirve para buscar algun que hay dentro del indice que pongamos entre los (), si no ponemos nada entendera que el indice es "0". Por lo que en este caso imprimira "M" ya que M es el primer caracter de nuestro string de fullname "Mauricio Laratro".
+Si ponemos entre los parentesis (1), imprimira "a" por ejemplo.
+
+Otro metodo es:
+fullname.replace('Mauricio', 'Javier')
+este metodo sirve para reemplazar, el primer string que le indiquemos, por el segundo.
+Este metodo no es destructivo, no muta el elemento base, es decir fullname sigue siendo Mauricio Laratro, sin embargo lo que hace es devolverme un nuevo string que lo podemos envolver en una nueva variable. la forma de utilizarlo seria, por ejemplo:
+Const newName = fullname.replace('Mauricio', 'Javier')
+ahora fullname seria = Mauricio Laratro y newName = Javier Laratro.
+
+(Si la variable estuviese declarada por let, podriamos redeclarar fullname con .replace de la siguiente manera:
+fullname = fullname.replace('Mauricio', 'Javier')
+En este caso al imprimir fullname seria = Javier Laratro)
+
+Otro metodo es SEARCH:
+fullname.search('a')
+esto imprimiria como resultado = 1
+search sirve para buscar en que posicion del string esta el valor que asignamos entre los parentesis, pero siempre arroja solamente la primer coincidencia, por lo que si quisiera buscar la "a" de Laratro, deberia ser mas especifico y poner entre parentesis (La), para que me diga en que posicion se encuentra.
+Si el valor impreso es mayor o igual a 0 es que se encontro coincidencia. Si el valor es -1, es que no existe ninguna coincidencia.
+
+Otro metodo es toUpperCase()
+fullname.toUpperCase(auricio)
+Esto transformaria 'Mauricio' a 'MAURICIO', pero tampoco es destructivo, es decir, sirve para asignarlo a una nueva variable, ya que el string asignado a fullname seguiria siendo 'Mauricio'.
+Tambien existe: toLowerCase, que es para transformar a minuscula.
+
+
+IMPORTANTE: Las propiedades solo almacenan datos, en cambio los métodos realizan acciones y modifican propiedades. Esta es la diferencia entre propiedad y metodo.
+El típico ejemplo sería la clase perro en donde el color de pelo es una propiedad mientras que correr sería un método.
+
+
+CONDICIONALES Y BOOLEANOS:
+Un boleano siempre va a ser o false o true. Estos valores son importantes, porque, se utilizan para las "Condiciones" y estas nos sirven para hacer programas mas complejos.
+Una condicion es "if" statement, por ejemplo, ya que tambien existen otros tipos de condicionales.
+Un ejemplo de esta condicional seria:
+if () {
+
+} else {
+
+}
+El metodo para utilizarlo es poner una expresion entre los () y esta expresion realiza una evaluacion, mediante algo llamado coerción, para determinar si es "true" o "false". Luego, si es true, es decir, que se cumple mi condicional que esta entre (), entonces ejecutara el codigo que pongamos dentro de los primeros {}. De lo contrario, si es false, entonces ejecutara el codigo que pongamos en el segundo bloque, es decir lo que este entre {} luego de la palabra "else".
+
+IMPORTANTE:
+El constructor de los booleanos tiene la siguiente sintaxis
+Boolean()
+dentro de los parentesis pueden ir numeros, strings o cualquier otra expresion.
+
+FALSE VALUES (casos que dan como resultado "Flase"):
+Boolean(' ')
+Boolean(" ")
+Boolean(` `)
+Boolean(0)
+Boolean(-0)
+Boolean(0n)
+Boolean(null)
+Boolean(undefined)
+Boolean(NaN)
+Nan = Not a Number (Es un valorde js)
+
+TRUTHLY VALUES (casos que dan como resultado "True"):
+Boolean('Mauricio')
+Boolean(-1)
+Boolean(1)
+Boolean(1.5)
+Boolean(1n)
+Boolean(Infinity)
+Boolean(-Infinity)
+Boolean({})	Esto es un Object
+Boolean([])	Esto es un Array
+Boolean(new Date())    Esto es un Object de fecha.
+
+
+NUMBERS:
+El contructor de los numeros es:
+Number()
+los operadores basicos para los numeros son:
++ suma.
+- resta.
+* multiplicacion.
+/ division.
+% division, pero nos da como resultado el resto.
+
+No hay operadores para la potencia y la raiz, entonces para esto, debemos utilizar un nuevo objeto de js llamado:
+Math.
+este objeto tiene varios metodos.
+Por ejemplo 
+
+POTENCIA:
+Math.pow(5, 2)	= 25
+donde el primer valor es el numero a potenciar y el segundo es la potencia.
+
+RAIZ CUADRADA:
+Math.sqrt(9)	= 3
+
+Los NUMBERS por si mismos tambien poseen METODOS:
+
+const sum = 5 + 7
+sum.toFixed(2)
+
+El metodo toFixed, lo que hace es agregarle decimales a nuestra expresion que es "sum" que es un 12 como resultado de la suma. Al agregarle toFixed(2) da como resultado 12.00, pero esto ya deja de ser un number y pasa a ser un String.
+Y como ya lo hemos visto anteriormente, este metodo no modifica la base, es decir, "sum" por si mismo sigue siendo un numbre, pero sum.toFixed(2) es un nuevo valor y es un String.
+
+Si queremos convertir un Number a un String de manera explicita, debemos utilizar el motedo:
+sum.toString()
+toString convierte el valor en un string. Se utiliza cuando queremos imprimir algun resultado de un calculo en el navegador por ejemplo. Ya que todo lo que imprimimos en el navegador seran siempre Strings.
+
+Casos diferentes:
+5 + '5'	= 55
+En js si sumamos un number con un string, no se suma de manera convencional, si no que se agrega directamente el string al number, por eso en este caso el resultado es 55 y no 10. A su vez, el valor que resulta ya no es un number, si no que pasa a ser un String.
+Si sumamos un string vacio ' ' a un number 10, el resultado sera 10 pero se convertira en un String.
+
+Esto es importante, ya que, en muchos casos vamos a traer informacion del navegador hacia el codigo y aunque sean numeros, el DOM nos los dara en forma de String, por ejemplo nos podria devolver una variable como la que usamos anteriormente "sum". Y como utilizamos esto si lo que deseamos es compararlo con un numero dentro de js? Simplemente debemos convertirlo a number con su constructor. Por ejemplo:
+Number('sum') + 5	=	17
+
+Esto de que se sumen explicitamente los string a los numbers, solo sucede en el caso de la suma. Ya que en la resta, multiplicacion y division el lenguaje entedera que son numbers y los calculara de forma comun y corriente, es decir:
+10 - '5'	= 5
+5 * '5'	= 25
+15 / '3'	= 5
+y si hacemos alguna de estas operaciones con un string vacio, el resultado sera un Number, no lo convertira en String como en la suma.
+
+En el caso de que hagamos una operacion entre un Number y un string que no se convierte en numero, por ejemplo nuestro string de 'Mauricio'
+En el caso de la suma:
+10 + Mauricio	= 10Mauricio
+Pero en el caso de la resta:
+10 - Mauricio	= NaN (Not a Number)
+
+IMPORTANTE:
+NaN es un valor especial de los numbers y NINGUN NaN ES IGUAL A OTRO NaN, por lo tanto no se pueden comparar como por ejemplo:
+const nan1 = 10 - 'Mauricio'
+(nan1 === Nan)	= False
+Y aunque NaN signifique Not a Number, si hacemos un typeof en el, nos saldra como resultado que si es un Number, ya que como dijimos es un valor especial de los Numbers.
+
+
+
+OBJECTS:
+las {} representan a los objectos. Por ejemplo:
+
+const user = {
+  name: 'Mauricio',
+  lastname: 'Laratro',
+}
+
+El object es todo lo que esta dentro de las {} y todo la informacion que este dentro de las llaves, se llaman: PROPIEDES y a su vez, las propiedades, contienen VALORES.
+Lo que separa la propiedad de sus valores es ":" y lo que divide una propiedad de otra diferente es ",".
+Para acceder a algun valor que este dentro de alguna propiedad de nuestro objeto, debemos utilizar "." Por ejemplo:
+
+user.name
+
+otra manera de hacerlo es:
+const find = 'name'
+user[find]   (Esto nos devolveria Mauricio).
+
+usar los corchetes en vez del punto es, menos utilizado pero sirve para obtenerlo de manera dinamica. Es decir que si nuestro porgrama cambia el valor de find, de 'name' a 'lastname', como resultado de alguna accion dentro de el, tambien cambiara el string que imprima user[find]. Sin tener que hacerlo de manera manual en el codigo.
+
+Si queremos agregar una nueva propiedad a nuestro object ya existente, no es necesario agregarla en su propia iniciacion, es decir, dentro de sus {}. Podemos agregarla en cualquier momento, por ejemplo de la siguiente manera:
+
+user.age = 25
+
+Esto agregaria una propiedad nueva a nuestro object, que seria "age" y el valor que contiene en este caso no es un string, si no que es un number.
+
+user.married = false
+Esto por ejemplo, agregaria otra propiedad pero en este caso contendra un valor diferente, un boolean.
+
+Los objects, pueden contener a si mismo, otros objects:
+
+user.course = {
+name : 'JavaScript',
+classes: 50,
+}
+
+esto agregaria un objeto llamado course dentro de nuestro objeto user, que dentro tendria 2 propiedades, 1 con un string y otra con un number.
+
+Tambien los Objects pueden contener Arrays dentro de ellos:
+user.list = ['1', 2, null]
+como sabemos los Arrays se crean con los [].
+
+
+Muchas veces, necesitaremos extraer datos de un object y con ese dato, crear una nueva variable. Para esto tenemos varias alternativas:
+
+1-{
+const { name } = user
+}
+(Esta tiene mejor sintaxis)
+
+2-{
+const name = user.name
+}
+
+Que estan haciendo ambas alternativas? Estamos extrayendo un dato que esta dentro del objeto (name) y con este creamos una nueva variable (name). Es decir estamos volviendo una variable, un daro que estaba dentro de un objeto (user.name ahora es la variable name).
+
+En la primera alternativa, dentro de las {} indicamos que dato del objeto deseamos extraer y a su vez como llamaremos a esa variable, si no queremos que la variable se llame igual al dato que extraemos, debemos usar la segunda alternativa. Donde despues de const escribimos como se va a llamar la variable y despues de user. el dato que queremos extraer.
+
+
+Los Objects, tambien pueden tener metodos y estos metodos son functions. Por ejemplo:
+
+user.fullname = function() { return `${user.name} ${user.lastname}` }
+
+Que esta haciendo esta funcion? esta creando fullname, es decir un metodo de nuestro objeto que tendra como valores lo que contenga "name", un espacio y lo que contenga "lastname", es decir, en este caso, creariamos un metodo fullname, que dentro tendria los datos 'Mauricio Laratro'
+Tambien podriamos obtener el mismo resultado si en vez de usar user.name y user.lastname, dentro de nuestro template literal, usaramos un valor especial de las function que se llama
+"this"
+Es decir this.name y this.lastname, nos darian el mismo resultado.
+
+
+FUNCTIONS
+Son uno de los bloques de construccion fundamentales de JS. Es un conjunto de instrucciones que realiza una tarea o calcula un valor.
+Pero para que cada procedimiento califique como una FUNCTION, debe tomar alguna entrada y devolver una salida.
+
+Existen 2 formas de crear una function:
+
+1- Declaracion de una function:
+function suma(a , b) {
+   return a + b
+}
+dentro de los parentesis se escriben los parametros de la declaracion de function, estos parametros son las ENTRADAS, con los cuales se van a realizar los calculos.
+Estos parametros son enviados en forma de valores, estos valores los llamamos ARGUMENTOS y para enviar un argumento, debemos hacer un llamado a nuestra function, y lo hacemos de la siguiente manera:
+suma(5, 15)
+en este caso, dentro de los parentesis debemos escribir nuestros argumentos, es decir los valores a calcular, separados con una coma otra vez.
+Luego dentro de las {} debemos pasar los parametros que se van a utilizar para calcular nuestros argumentos, en este caso es una suma {a + b} (esta suma es una expresion).
+Y RETURN lo agregamos porque es un parametro, que define la finalizacion de una function, a la cual se le pasa una expresion (como {a + b}), y esto se devuelve como resultado de nuestra function.
+Si no agregamos return, el proceso se estara realizando, es decir, se realiza el calculo internamente, pero no se devolvera el resultado de la function cuando la llamemos, de hecho nos dara undefined.
+
+IMPORTANTE, una vez ejecutado un RETURN statement, no se puede agregar nada mas a esa function.
+Esto no significa que nuestro RETURN deba estar siempre en la ultima linea de una function, un ejemplo de esto:
+function suma (a, b){
+if (a > b){
+return a + b
+}
+return b - a
+}
+esto seria utilizar una condicional dentro de una function, lo que haria es que si a es mayor que ve, de como resultado la suma, en cambio si esa condicional es false, nunca se imprimiria el return de la suma y solo daria como resultado la resta de b - a.
+
+2- Expresion de una function:
+const suma = fuction (a, b) {
+ reutrn a + b
+}
+
+suma(10, 5)
+La diferencia entre la declaracion y la expresion de function, radica en la sintaxis, para hacer una expresion de la function, SI O SI asignarla a una variable. Por eso const suma =.
+luego enviamos los parametros, de la misma manera "suma(10, 5)".
+
+Otra forma de hacer una function es con un arrow function:
+const suma = (a, b) => {
+return a + b
+}
+
+suma(5, 7)
+El problema es que arrow function tiene limitaciones, porque:
+-No tiene sus propios enlaces a this o super y no se debe usar como métodos.
+-No tiene argumentos o palabras clave new.target.
+-No apta para los métodos call, apply y bind, que generalmente se basan en establecer un ámbito o alcance
+-No se puede utilizar como constructor.
+-No se puede utilizar yield dentro de su cuerpo.
+
+Aunque si tienen su utilidad, por ejemplo, se suele usar un arrow function como argumentos (parametros) de alguna otra function:
+['a' , 'b',  'c'].map(() => 'Mauricio').
+
+
+ARRAY:
+los ARRAYS son una coleccion de datos ORDENADOS.
+Son similares a una lista, cuyo prototipo proporciona metodos para efectuar operaciones de recorrido y mutación.
+Tanto la longitud como el tipo de elementos de un array son variables, es decir que, puede contener distintos tipos de datos (String, objects, number, otro array, etc...) y no es algo estatico e imutable.
+La longitud de los arrays pueden cambiar en cualquier momento, y los datos almacenar en ubicaciones no contiguas.
+
+Constructor del Array:
+Array()
+esto devuelve datos entre [].
+Tambien se puede crear un array directamente utilizando los [], pero debemos asignarlos a una variable, por ejemplo:
+
+const nameList = ['Mauricio', 'Leonidas', 'Lionel']
+
+Los datos dentro de los arrays, son ordenados (INDEXADOS) y siempre comienzan por el 0, no por el 1. En este caso 'Mauricio' esta ordenado en el indice 0 y 'Leonidas' en el indice 1.
+
+Si queremos acceder a un solo dato de nuestro array debemos llamarlo por su indice:
+
+nameList[0]	//? Mauricio
+
+Si queremos saber la longitud de nuestro array debemos utilizar la propiedad length:
+
+nameList.length	//? 3
+
+Nos dira que la cantidad de datos que tenemos en nuestro array, en este caso, es de 3, ya que la longitud, no comienza a contar desde el 0, si no que comienza desde el 1.
+Es decir que el ultimo elemento es siempre igual a la longitud menos 1, en este caso nuestro ultimo elemento seria el 2 'Lionel'.
+
+Pero si no sabemos cuantos elementos tenemos en un array y queremos traernos siempre el utlimo, podemos hacer lo siguiente:
+
+nameList[nameList.length - 1]
+
+Esto traera siempre al ultimo elemento del array, sin importar que en un futuro se agreguen otros nuevos elementos. Simpre traera el ultimo.
+
+A los Arrays tambien se le pueden agregar propiedades, aunque estas no se cuentan para la longitud. Se hace de la siguiente manera:
+
+nameList['cdm'] = 'campeones del mundo'
+
+Luego si consultamos:
+nameList //? ['Mauricio', 'Leonidas', 'Lionel', cdm: 'campeones del mundo']
+
+De esta manera quedaria nuestro Array.
+Si queremos llamar a la propiedad que agregamos, debemos hacerlo de la misma manera en la que la ingresamos (Ya que no tiene un indice):
+
+nameList['cdm']	//? campeones del mundo
+O tambien la podemos llamar con:
+nameList.cdm	//? campeones del mundo.
+
+Con: 
+nameList.cdm = 'campeones 2022'
+la podemos reasignar.
+
+nameList.concat('Messi')
+.concat lo que hace es agregar un nuevo dato a nameList y nos devuelve un nuevo array, es decir, no cambia el array original de nameList. Pero sirve si queremos asignarla a una nueva variable. Por ejemplo:
+
+const newList = nameList.concat('Messi')
+
+Otra forma de hacer esto es con operador SPREAD, que se representa con "..." tres puntitos, quedaria de la siguiente manera:
+
+const newList = [...nameList, 'Messi']
+
+Esto daria el mismo resultado que .concat.
+
+Estos son metodos NO DESTRUCTIVOS, es decir que no mutan el array original.
+Si lo que queremos es mutar el array original, existen otros metodos como:
+
+newList.push('Andres')
+
+.push lo que hace es agregar un nuevo dato al final del array original, es decir que lo modifica y tambien extiende su longitud.
+
+Un metodo que hace lo contrario a push, es decir, que quita el ultimo elemento del array, es:
+
+newList.pop()
+
+La sintaxis es asi, sin colocar argumentos entre los (). Lo que haria esto, en este caso, es volver a quitar 'Andres'.
+
+
+Los Arrays pueden ser multidimensionales. Es decir dentro de un array podemos tener una lista que crece en longitud, dentro del eje X (u horizontalmente) y luego agregar otra que crezca de forma vertical (eje Y). Y hacer esto da como resultado algo llamado MATRIZ:
+nameList.push(['Javier', 'Laratro'])
+Lo que hacemos es pushear otro array dentro del array original.
+Luego si queremos acceder a el elemento 'Javier' por ejemplo, debemos:
+nameList[3][0]
+debemos utilizar el indice del array que agregamos y el indice que tiene el elemento 'Javier' en ese nuevo array.
+Ya que si solo utilizamos el indice 3, lo que estaremos obteniendo seria el nuevo array entero, no solo el dato 'Javier'.
+
+Ejemplo de como utilizar esto:
+
+const bidimensional = [[0, 1, 0], [1, 1, 0], [0, 1, 1]]
+
+const ceros = []
+
+bidimensional.forEach((a, indexA) => {
+a.forEach((b, indexB) => {
+if (b === 0) {
+ceros.push(´${indexA} ${indexB}´)
+}
+})
+})
+ceros //?	['00', '0 2', '1 2', '2 0']
+
+EXPLICACIÓN:
+.forEach: es un metodo que resibe un solo parametro, que SIEMPRE ES UNA FUNCTION (en este caso utilizamos una arrow function "(a, indexA) =>"). Luego esa function, recibe a su vez 2 parametros, donde el primer parametros es el elemento que se esta ITERANDO (En este caso es"a" que es igual a los 3 arrays que tiene dentro el array bidimensional, es decir los 3 pares de corchetes), y el segundo parametro es el INDICE que se esta ITERANDO "indexA" (en este caso serian los indices 0, 1 y 2, que estan dentro de "a").
+Una vez hecho esto, lo que hacemos es ITERAR una vez mas, pero en este caso, a los indices que contienen los 3 arrays de "a", lo hacemos con:
+a.forEach((b, indexB) =>
+"b" corresponderia a los valores que tinen dentro los 3 arrays, es decir los unos y ceros. Mientras que indexB corresponde a los indice donde estos estan ordenados
+y en la arrow function de este a.forEach, realizamos la operacion comparativa de:
+if (b === 0)
+E indicamos que si se cumple la condicion de que "b" sea igual a 0 realice el push a la variable "ceros" que habiamos creado antes:
+{ceros.push(´${indexA} ${indexB}´)}
+
+esto daria como resultado que "ceros", tenga las coordenadas de en que indicie del array inicial y en que inidice de los arrays internos, hay un elemento "0":
+ceros //?	['00', '0 2', '1 2', '2 0']
+Es decir, en el primer y tercer elemento del primer array interno hay un 0 ('0 0' y ' 0 2').
+Tambien en el tercer elemento del segundo array interno ('1 2').
+Y en el primer elemento del tercer array interno ('2 0').
+Recordemos que los indices se empiezan a enumerar desde el 0, por eso el segundo elemento se representa con un 1 y el tercero con un 2.
+
+
+COMO FILTRAR LOS ARRAYS?
+Existen diferentes metodos:
+
+nameList.map((name) => `el nombre es ${name}`)
+
+el metodo map, siempre recive una function como parametro, en este caso utilizamos un arrow function a la cual le indicamos como parametro indicamos lo que estamos iterando, en este caso son los "name". Luego regresamos con el arrow function el template literal `el nombre es ${name}`
+De esta manera lo que estariamos haciendo es añadir un nuevo string que es 'el nombre es', a todos los datos name que tenemos dentro del array nameList. Es decir quedaria delante de cada nombre: 
+'el nombre es Mauricio', 'el nombre es Leonidas'
+Y asi con todos los datos del array.
+
+Otro metodo de los array es:
+nameList.filter()
+filter lo que hace es iterar por todos los elementos del array, buscando alguna coincidencia.
+Este tambien recibe una funcion como parametro, por ejemplo:
+
+nameList.filter(name => {
+if (name === 'Mauricio'){
+return true
+}
+return false
+})	//? ['Mauricio']
+
+Esto lo que esta haciendo es devolvernos un nuevo array con la coincidencia que encuentre, en este caso si encuentra un name que su dato es Mauricio, nos devolvera un array nuevo, con el unico dato de Mauricio, es decir ['Mauricio'].
+Si se da el caso de que no hay ningun Mauricio dentro del array, lo que hara es devolvernos un array vacio.
+
+Otro metodo parecido es .find, pero este en vez de resultar en un nuevo array, lo que devuelve es un valor y solo devuelve la primer coincidencia, por mas que existan mas de una, solo devuelve la primera. Por ejemplo:
+
+nameList.find(name => {
+if (name === 'Mauricio'){
+return true
+}
+return false
+})	//? Mauricio
+
+En este caso nos esta devolviendo la primer coincidencia que encuentra pero no en forma de un nuevo array, si no que en forma de dato.
+
+Otro metodo de los arrays es .findIndex y lo que hace es decirnos en que indice se encuentra el tipo de valor que indiquemos. Por ejemplo:
+
+nameList.findIndex(name => {
+if (name === 'Mauricio'){
+return true
+}
+return false
+})	//? 0
+
+
+
+BUCLES E ITERACIÓN
+Los bucles nos ayudan a realizar las tareas repetitivas, de una forma mas programatica. Por ejemplo:
+
+
+ITERAR OBJECTS:
+
+1- FOR IN:
+La instrucción for-in itera sobre todas las propiedades enumerables de un objeto que está codificado por cadenas (ignorando los codificados por Símbolos, incluidas las propiedades enumerables heredadas.
+Es un tipo especial de for que sirve exclusivamente para iterar objects:
+
+for (prop in user) {
+   prop //? nos dira todas las 
+	propiedades que tenga el			object user
+
+   user[prop] //? nos dira cada uno de 			               los valores de esas 	 	               propiedades
+}.
+
+2- Object.keys()
+El método Object.keys() devuelve un array de las propiedades names de un objeto, en el mismo orden como se obtienen en un loop normal.
+Object.keys recibe por parametro un Object que hayamos creado antes, en este caso "user":
+Object.keys(user).forEach(prop =>{
+prop //?
+user[prop] //?
+Esto nos daria el mismo resultado que tuvimos con el metodo anterior.
+})
+El resultado de esto nos dira todas las propiedades que contenga este object, pero esta vez en forma de Array[]. Luego para iterarlo lo unico que debemos hacer es utilizar el metodo .forEach
+
+
+ITERANDO ARRAYS
+1- for of:
+La sentencia sentencia for...of ejecuta un bloque de código para cada elemento de un objeto iterable (en-US), como lo son: String, Array, objetos similares a array (por ejemplo, arguments or NodeList), TypedArray, Map (en-US), Set e iterables definidos por el usuario.
+Sintaxis:
+for (variable of iterable) {
+  statement
+}
+
+EJEMPLO:
+for (let value of nameList) {
+   value //?  Mauricio, Leonidas, Lionel,  	   etc...
+}
+
+
+2- for:
+Crea un bucle que consiste en tres expresiones opcionales, encerradas en paréntesis y separadas por puntos y comas, seguidas de una sentencia ejecutada en un bucle.
+Sintaxis:
+for ([expresion-inicial]; [condicion]; [expresion-final])sentencia
+
+expresion-inicial
+Una expresión (incluyendo las expresiones de asignación) o la declaración de variable. Típicamente se utiliza para usarse como variable contador. Esta expresión puede opcionalmente declarar nuevas variables con la palabra clave var. Estas variables no son locales del bucle, es decir, están en el mismo alcance en el que está el bucle for. El resultado de esta expresión es descartado.
+
+condicion
+Una expresión para ser evaluada antes de cada iteración del bucle. Si esta expresión se evalúa como verdadera, se ejecuta sentencia. Esta comprobación condicional es opcional. Si se omite, la condición siempre se evalúa como verdadera. Si la expresión se evalúa como falsa, la ejecución salta a la primera expresión que sigue al constructor de for.
+
+expresion-final
+Una expresión para ser evaluada al final de cada iteración del bucle. Esto ocurre antes de la siguiente evaluación de la condicion. Generalmente se usa para actualizar o incrementar la variable contador.
+
+sentencia
+Una sentencia que se ejecuta mientras la condición se evalúa como verdadera. Para ejecutar múltiples sentencias dentro del bucle, utilice una sentencia block ({ ... }) para agrupar aquellas sentecias.
+
+EJEMPLO:
+for (let i = 0; i <= nameList.length - 1; i = i + 1) {
+   i   //?    0, 1, 2, 3, 4
+   nameList[i]  //? Mauricio, Leonidas,    etc...
+
+   if (i == 2){
+    break;
+    }
+}
+
+La diferencia entre el for y el for.Each. Es que un for.Each va a iterar, como sea, por todos los elementos de un object. En cambio un for puede ser mas restrictivo o inteligente a la hora de iterar.
+Por eso podemos agregar el
+if (i == 2){
+    break;
+    }
+Que hace que una vez que i llegue a ser igual a 2, deje de itarar, porque ya recorrimos todo lo que necesitamos. Esto solo se puede hacer con un for
+
+(Para iterar arrays tambien se puede usar FOR IN, ya que los arrays son un tipo de objeto)
+
+3- While:  "Mientras" 
+Crea un bucle que ejecuta una sentencia especificada. siempre y cuando la condición que este entre los () se evalúe como verdadera. Dicha condición es evaluada antes de ejecutar la sentencia
+
+let count = 0
+while (count <= nameList.length - 1) {
+     nameList [count]
+     count = count + 1
+}
+(Se agrega count = count + 1 para no crear un bucle infinito y romper el programa, ya que estamos indicando que si se cumple la condicion a count le sumaremos +1, entonces despues de sumarle las veces necesarias +1 a count, llegara a ser mayor que la longitud de nameList, es decir mayor que nameList.length. Por lo que ya no se cumplira la condicion y entonces no se ejecuta la sentencia entre {}.)
+
+
+4- do...while:
+La sentencia "hacer mientras" crea un bucle que ejecuta una sentencia especificada, hasta que la condición de comprobación se evalúa como falsa. La condición se evalúa después de ejecutar la sentencia, dando como resultado que la sentencia especificada se ejecute al menos una vez.
+
+EJEMPLO:
+let result = '';
+let i = 0;
+
+do {
+  i = i + 1;
+  result = result + i;
+} while (i < 5);
+
+console.log(result);
+// Expected output: "12345"
+
+La diferencia entre un while y un do while, es que un do while se va a ejecutar por lo menos 1 vez, si o si.
+
+
+
+
+EJERCICIO
+Juanito debe escribir 100 renglones de "No debo olvidar traer el libro de Literatura"
+
+for (let i = 0; i <= 100; i = i +1){
+     console.log('No debo olvidar traer el libro de Literatura')
+}
+
+
+OPERADORES EN CONDICIONALES:
+Operadores de COMPARACIÓN:
+
+1-	==
+if (5 == 5) {
+console.log('hola')	//? hola
+}
+
+== es diferente a =, ya que = es un operador de asignacion, es deicir, sirve para asigar valores.
+En cambio == sirve para comparar si 5 es == a 5
+
+5 == '5'	//? true
+5 tambien es == a un string con valor de 5.
+En cambio:
+5 === '5'	//? false
+El operador de triple igual no solo compara el valor, si no que tambien compara el tipo de valor, entonces si son valores iguales pero de diferente tipo, nos dara false.
+INTENTAR UTILIZAR SIEMPRE EL TRIPLE ===.
+
+2-	!=
+Este operador significa "es diferente a...":
+5 != 4	//? true
+5 != 5	//? false
+5 != '5'	//? false
+
+Tambien existe el !== que comprar si son diferentes tanto de  valor como de tipo, en ese caso seria:
+
+5 !== '5'	//? true
+ya que aunque sean iguales de valor, son de diferente tipo, por lo que arrojara un true.
+
+3-	> <
+representan "es mayor que... y es menor que...":
+5 > 10	//? false
+5 < 10	//? true
+5 < 5	//? false
+5 > 5	//? false
+Si queremos que sea "mayor/ o igual a que..." Debemos utilizar >=  <=:
+5 >= 5	//? true
+5 <= 5	//? true
+5 >= '5'	//? true
+
+
+OPERADORES LOGICOS:
+
+1-	!
+Es el operador de NEGACIÓN
+5 != 5	//? false
+!(5 != 5 )	//? true
+
+
+2-	&&
+Es el operador de "Y". Se utiliza por ejemplo cuando queremos que mas de una condicion de cumpla, es decir, 'condicion a' && 'condicion b'. Por ejemplo:
+if (5 == '5' && 10 === 10)	//? true
+
+if (5 == '5' && 10 === '10')	//? false
+Es decir que para que se ejecute el codigo que este despues del if, se deben cumplir ambas, condiciones, si una de ellas no se cumplen, entonces es "false" por lo que no ejecutara el codigo.
+
+
+3-	||
+Es el operador de "O", es decir que es como el operador anterior, pero devuelve true, si al menos una de las condiciones se cumple, sin importar si la otra no se cumple. Es decir:
+if (5 == '5' || 10 === 10)	//? true
+
+if (5 == '5' || 10 === '10')	//? true
+
+
+
+SENTENCIA CONDICIONAL (IF, ELSE Y ELSE IF):
+
+if es la estructura CONDICIONAL por excelencia, aunque existen otras.
+Un if sirve para preguntarse una condición.
+repaso:
+if () {
+
+}
+dentro de los () de if se coloca la expresión condiciónal. Luego dentro de las {} se escribe los statement o "declaraciones" que queremos que se ejecuten si se cumplen las condiciones dispuestas entre los ().
+Tambien se puede añadir un "else" si deseamos ejecutar otros statement cunado no se cumplan las ()condicionales:
+if () {
+
+} else {
+
+}
+
+Tambien existe "else if" que sirve para utilizar else con otra condicional, es decir:
+if () {
+
+} else if () {
+
+}
+
+CONDICIONES + FUNCIONES + ITERACIONES.
+EJERCICIO: funcion para  saber si un numero es primo o no.
+(Los numeros primos son aquellos mayores a 1 que solo pueden ser devididos por 1 y por si mismo)
+
+function isPrimeNumber(number){
+   for (let i = 2; i < number ; i = i + 1){
+      if (number % i === 0) {
+          return false
+      }
+   }
+   return number > 1
+}
+isPrimeNumber(10)
+
+
+Explicación:
+Hacemos el for, iterando desde 2 "let i = 2" hasta un numero antes del que representa number "i < number" (en este caso representa el 10 asi que se va a iterar desde el 2 hasta el 9). Porque lo que queremos es no dividir por 1 ni por el mismo numero que representa number (10), ya que de esta manera si tenemos algun resultado positivo dentro de la iteración (es decir que la division de 0), vamos a retornar false, porque los numeros primos deben dar 0 solo cuando se dividen por 1 y por si mismo. En este caso del 10 es false, es decir no es primo, porque al iterar por 2 y por 5, el resultado es 0, asi que no es un numero primo.
+
+"i = i + 1" es para que "i" aumente con cada iteración y no divida infinitamente por 2, que es lo que vale inicialmente.
+
+if (number % i === 0) {
+          retur false
+}
+esto lo que hace es decir que si la division de number por algunas de las iteraciones de "i" da igual a 0, retorne false, ya que significaria que el numero que representa numer es divisible por mas numeros ademas de 1 y si mismo.
+Se utiliza el operador % en vez de /, porque el operador % representa:
+Operador binario. Devuelve el resto ENTERO de dividir los dos operandos.
+
+return number > 1, hace que retorne un resultado solo si number es mayor a 1, ya que la regla de los numeros primos dice que deben ser mayor a 1.
+
+
+EJERCICIOS PARA SABER CUANDO NUMEROS PRIMOS HAY ANTES DEL 1000 UTILIZANDO LA FUNCION QUE YA HICIMOS ARRIBA:
+
+function isPrimeNumber(number){
+    for (let i = 2;i < number ; i = i + 1){
+       if (number % i === 0) {
+           return false
+       }
+    }
+    return number > 1
+ }
+ isPrimeNumber(7)
+ 
+
+ let counter = 0
+
+ for (let i = 0; i < 1000; i = i + 1) {
+    if (isPrimeNumber(i)) {
+        counter = counter + 1
+    }
+ }
+ counter    //? 168
+
+
+Lo que hacemos es agregar una variable que sera el contador, luego hacer un for que recorra desde 0 "let i = 0" con la condicion de hacerlo hasta 1000 "i < 1000" e incrementamos i cada vez que se cumpla la condicion "i = i +1"
+cada vez que se cumple esto, ejecutaremos if (isPrimeNumber(i)) que lo que hace es devolver true en todas las veces que encuentra un numero primo, recorriendo todo "i", es decir iterando desde 0 a 1000 (utilizando la funcion que hicimos para determinar cuales son los numero primos) y en el caso de dar true se aplica lo que declaramos entre los {}, es decir {counter = counter + 1}. por lo tanto counter incrementara en 1 cada vez que la iteracion encuentre un numero primo desde el 0 hasta el mil.
+Dando como resultado un total de 168 numeros primos.
+
+ACLARACION:
+En la primer funcion lo que hacemos es determinar cuales son los numeros primos, ya que con el return false, descartamos todos los que dan como resultado 0 y con el return number > 1 retornamos cualquier numero que no de como resultado del if = 0 y que cumpla con la condicion de ser mayor que 1, isPrimeNumber(10) solo lo utilizamos para llamar a la funcion y ver su resultado, es decir si da false = numero no primo o si da true = numero primo.
+
+
+
+SWITCH:
+La declaración switch evalúa una expresión, comparando el valor de esa expresión con una instancia case (caso), y ejecuta declaraciones asociadas a ese case, así como las declaraciones en los case que siguen.
+
+Es decir, switch sirve para evaluar una expresión y segun el resultado esa evaluación, ejecutar "a", "b" o "c", un numero limitado de case. Ya que si fueran "n" case, es decir un numero indeterminado de casos, es mejor usar algun iterador.
+Switch es muy util para evitar if else if encadenados.
+
+Estructura de SWITCH:
+switch (expresion a evaluar) {
+   case 'a':
+      codigo a ejecutar en case 'a'
+      breack; (se utiliza para que no siga "iterando, en caso de encontrar la       coincidencia el un case, es decir       que si uno coincide, que se detenga       ahi")
+   case 'b':
+      codigo a ejecutar en case 'b'
+      breack;
+   default: (Es lo que se ejecuta en caso de que la evaluacion no de como resultado ninguno de los case determinados).
+   breack;
+}
+
+
+
+TRY, CATCH and FINALLY:
+Esta es una declaración donde. Dentro de: 
+TRY{} se colocan las sentencias/declaraciones que queremos que se ejecuten.
+CATCH{} es lo que se ejecuta si alguna sentencia de TRY llega a fallar.
+FINALLY{} se ejecuta todo el bloque, siempre, aunque todo lo de try funcione y aunque no tambien, por eso es que finally no se suele utilizar tanto.
+
+
+Utilizar try and catch solo cuando podemos tener errores inesperados, es decir, no usar a la ligera solo por desconfiar de una parte del codigo, siempre debemos procurar tener todo el codigo bien validado, si pensamos que dejamos huecos a posibles fallos, no es donde debemos utilizar try and catch, si no que debemos mejorar nuestro codigo.
+
+
+OPTIONAL CHAINING "?."
+La cadena opcional "?." es un operador que se utiliza en vez del operador de cadena que es el "."
+" ?." accede a la propiedad de un objeto o llama a una función. Si el objeto al que se accede o la función a la que se llama con este operador es undefined o null, la expresión se cortocircuita y se evalúa undefined como en lugar de arrojar un error.
+
+
+Nullish coalescing "??"
+ "??" es un operador lógico que devuelve su operando del lado derecho cuando su operando del lado izquierdo es null o undefined, y de lo contrario devuelve su operando del lado izquierdo.
+
+
+Ejemplos de use cases de estos de try y estos 2 operadores:
+
+try{
+   const list = user.course.modules?.list ?? []
+   list //? []
+   list.forEach(item => console.log(item))	//? undefined
+} catch (error){
+   console.log('hubo un fallo', error)
+}
+
+En este caso, estamos utilizando OPTIONAL CHAINING "?." ya que no modules no existe dentro de course, por lo tanto el resultado de esa busqueda dara undefined o null, en lugar de dar un error y luego utilizamos Nullish coalescing "??" ya que al ser un null se devolvera un array vacio []. Entonces list contendra este array, por lo que el metodo .forEach, devolera null o undefined y no un error. Entocnes no se ejecutara el catch.
+
+Catch puede recibir un error como parametro
+catch (error){
+}
+ y esto sirve para que cuando se llegue a ejecutar catch porque hubo una falla en catch, nos devuelva especificamente que ha fallado.
+
+
+ERROR
+Los objetos Error se lanzan cuando ocurren errores en tiempo de ejecución. También puedes utilizar el objeto Error como objeto base para excepciones definidas por el usuario.
+
+THROW
+para devolver un error se utiliza el statement throw, que es similar a return.
+
+
+TODO LO QUE VIMOS ANTERIORMENTE ES PARTE DEL LENGUAJE DE JAVASCRIPT EN SI, A DIFERENCIA DE LAS WEB API, COMO DOCUMENT.QUERYSELECTOR, QUE UTILIZAMOS PARA HACER REFERENCIA A UN ELEMENTO HTML EN EL ARCHIVO JS. ESTAS WEB API SON PARTE DE JS PERO PROVIENEN DEL DOM (DEL NAVEGADOR).
+
+
+
+INTL
+El objeto de ámbito global Intl es el espacio de nombres para el API de Internacionalización de ECMAScript, éste provee comparación de cadenas y formato de números, fechas y tiempos con sensibilidad al lenguaje. Los constructores para los objetos Collator (en-US), NumberFormat (en-US), y DateTimeFormat (en-US) son propiedades del objeto Intl. En ésta página se documentan tales propiedades, así como la funcionalidad común a los constructores de internacionalización y otras funciones sensibles al lenguaje.
+
+
+Math.floor():
+El Math.floor() método estático siempre redondea hacia abajo y devuelve el entero más grande menor o igual a un número dado.
+
+
+charAt()
+El método charAt() de Strings devuelve en un nuevo String el carácter indexado en la posicion que le pasemos entre los (). El primer caracter es 0.
+
+
+Window.matchMedia()
+El método matchMedia() del objecto global Window, devuelve un nuevo Object MediaQueryList que luego se puede usar para determinar si document coincide con el media query en forma de string, así como para monitorear el documento para detectar cuándo coincide (o deja de coincidir) con ese media query.
+
+
+?
+"?" Es el operador ternario, que es el unico que puede recibir 3 operandos.
+sintaxis:
+
+condición ? expresion1 : expresion2
+
+Si la condición es true, el operador retorna el valor de la expr1; de lo contrario, devuelve el valor de expr2.
+
+
+
+GEOLOCATION
+La interfaz Geolocation representa un objeto capaz de obtener mediante programación la posición del dispositivo. Se da acceso Web de la ubicación del dispositivo. Esto permite a un sitio Web o aplicación ofrecer resultados personalizados basados en la ubicación del usuario.
+Se obtiene un objeto con esta interfaz mediante la propiedad NavigatorGeolocation.geolocation implementado por el objeto Navigator.
+
+METODOS DE GEOLOCALIZACION:
+Geolocation.getCurrentPosition():
+Determina la ubicación actual del dispositivo y devuelve un GeolocationPositionobjeto con los datos:
+Este metodo recibe una function que a su vez recibe un Object(postion) que dentro de ese objeto contiene la propiedad .coords y a su vez .coords, contiene las propiedades de latitude y longitude:
+
+.getCurrentPosition(function(position){
+   haz_algo(position.coords.latitude, position.coords.longitude);
+});
+
+
+Geolocation.watchPosition():
+Devuelve un longvalor que representa la función de devolución de llamada recién establecida que se invocará cada vez que cambie la ubicación del dispositivo.
+
+Geolocation.clearWatch():
+Elimina el controlador particular previamente instalado usando watchPosition().
