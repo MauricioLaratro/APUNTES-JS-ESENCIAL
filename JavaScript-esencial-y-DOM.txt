@@ -952,3 +952,25 @@ Devuelve un longvalor que representa la función de devolución de llamada reci�
 
 Geolocation.clearWatch():
 Elimina el controlador particular previamente instalado usando watchPosition().
+
+
+
+CALL BACKS
+Cuando una function recibe como parametro, otra function. A ese parametro lo llamamos CALL BACK.
+Es decir los call backs no son mas que function haciendo de parametro dentro de otra function.
+
+
+
+PROMISES
+Una Promise (promesa en castellano) es un objeto que representa la terminación o el fracaso de una operación asíncrona.
+Esencialmente, una promesa es un objeto devuelto al cual se adjuntan funciones callback, en lugar de pasar callbacks a una función.
+
+
+THEN
+Es el metodo de Promise.then, que el que se ejecuta en caso de que la Promise resulte en la primer function de su callback que recibe como parametros. Es decir si resulta en lo que generalmente llamamos la function "resolve"
+
+CATCH
+Es el metodo de Promise.catch, que el que se ejecuta en caso de que la Promise resulte en la segunda function de su callback que recibe como parametros. Es decir si resulta en lo que generalmente llamamos la function "reject"
+
+TANTO THEN COMO CATCH, RECIBEN UN CALLBACK COMO PARAMETRO.
+A ese callback le pasamos por parametro como sea que queramos llamarle y luego dentro de las {} ejecutamos como necesitemos ese parametro. (Dicho parametro sera igual a lo que tenga dentro then(resolve) o catch (reject), respectivamente.)
