@@ -974,3 +974,135 @@ Es el metodo de Promise.catch, que el que se ejecuta en caso de que la Promise r
 
 TANTO THEN COMO CATCH, RECIBEN UN CALLBACK COMO PARAMETRO.
 A ese callback le pasamos por parametro como sea que queramos llamarle y luego dentro de las {} ejecutamos como necesitemos ese parametro. (Dicho parametro sera igual a lo que tenga dentro then(resolve) o catch (reject), respectivamente.)
+
+
+
+ASYNC FUNCTIONS
+La declaración de función async define una función asíncrona, la cual devuelve un objeto AsyncFunction.
+Es posible definir también funciones asíncronas a través de una expresión de función async.
+
+Cuando se llama a una función async, esta devuelve un elemento Promise. Cuando la función async devuelve un valor, Promise se resolverá con el valor devuelto. Si la función async genera una excepción o algún valor, Promise se rechazará con el valor generado.
+
+Una función async puede contener una expresión await, la cual pausa la ejecución de la función asíncrona y espera la resolución de la Promise pasada y, a continuación, reanuda la ejecución de la función async y devuelve el valor resuelto.
+
+
+WEB API
+Una API es una interfaz de programación de aplicaciones (del inglés API: Application Programming Interface). Es un conjunto de rutinas que provee acceso a funciones de un determinado software.
+
+
+
+FETCH API
+La API Fetch proporciona una interfaz para recuperar recursos (incluso a través de la red). Resultará familiar a cualquiera que haya usado XMLHttpRequest, pero la nueva API ofrece un conjunto de características más potente y flexible.
+Conceptos y uso
+Fetch ofrece una definición genérica de los objetos Request y Response (y otras cosas relacionadas con las solicitudes de red). Esto permitirá su uso donde sea necesario en un futuro, ya sea para operadores de servicios, API caché y otras cosas similares que manipulen o modifiquen las solicitudes y respuestas, o cualquier otro tipo de caso de uso que pudiera requerirle la generación de sus propias respuestas mediante programación.
+
+También proporciona una definición para conceptos relacionados, como CORS y la semántica de encabezado HTTP origen, suplantando sus definiciones separadas en otros lugares.
+
+Para hacer una solicitud y recuperar un recurso, utilice el método GlobalFetch.fetch (en-US). Se implementa en múltiples interfaces, específicamente Window y WorkerGlobalScope (en-US). Esto hace que esté disponible en casi cualquier contexto donde quiera buscar recursos.
+
+El método fetch() toma un argumento obligatorio, la ruta de acceso al recurso que desea recuperar. Devuelve una Promise (en-US) que resuelve en Response a esa petición, sea o no correcta. También puede pasar opcionalmente un objeto de opciones init como segundo argumento (ver Request).
+
+Una vez que Response es recuperada, hay varios métodos disponibles para definir cuál es el contenido del cuerpo y como se debe manejar (ver Body).
+
+Puede crear una solicitud y respuesta directamente a con los constructores Request() (en-US) y Response(), pero no es recomendable hacerlo directamente. En su lugar, es preferible que sean creados como resultado de otras acciones de la API (por ejemplo, FetchEvent.respondWith (en-US) desde los operadores de servicios).
+
+FETCH DEVUELVE UNA PROMISE. POR LO TANTO PUEDE UTILIZAR .THEN Y .CATCH
+
+FETCH RECIBE COMO PARAMETROS:
+1- UNA URL
+2- UN OBJECT (EN ESTE SE PUEDE INCLUIR EL METHOD: 'GET' , 'POST', 'PUT' CON EL QUE QUERAMOS EJECUTAR ESTA PETICION). GET ESTA POR DEFECTO
+
+GET: sirve para simplemente traer la información.
+POST: sirve para enviar y guardar la informacion en algun lugar.
+PUT: sirve para actulizar la informacion guardada anteriormente por POST.
+DELETE: este metodo sirve para borrar la informacion.
+
+RESPONSE
+La interfaz Response de la Fetch API representa la respuesta a una petición.
+Tú puedes crear un nuevo objeto Response usando el constructorResponse.Response(), pero es más probable encontrar un objeto Response siendo devuelto como resultado de la operación de otra API, por ejemplo un service worker Fetchevent.respondWith, o un simple GlobalFetch.fetch().
+
+Constructor
+Response()
+Crea un nuevo objeto Response.
+
+
+REQUEST
+La interfaz Request de la API Fetch representa una solicitud de respuesta.
+Puedes crear un nuevo objeto Request usando el constructor Request.Request(), pero es preferible encontrar un objeto Request que sea devuelto como el resultado de otra operacion API, como un operador de servicio FetchEvent.request.
+
+Constructor
+Request.Request()
+Crea un nuevo objeto Request.
+
+
+
+
+XMLHTTPREQUEST:
+XMLHttpRequest es un objeto JavaScript que fue diseñado por Microsoft y adoptado por Mozilla, Apple y Google. Actualmente es un estándar de la W3C. Proporciona una forma fácil de obtener información de una URL sin tener que recargar la página completa. Una página web puede actualizar sólo una parte de la página sin interrumpir lo que el usuario está haciendo. XMLHttpRequest es ampliamente usado en la programación AJAX.
+
+A pesar de su nombre, XMLHttpRequest puede ser usado para recibir cualquier tipo de dato, no solo XML, y admite otros formatos además de HTTP (incluyendo file y ftp).
+
+Para crear una instancia de XMLHttpRequest, debes hacer lo siguiente:
+
+var req = new XMLHttpRequest();
+
+
+
+Date.prototype.getDay()
+El método getDay() devuelve el día de la semana de la fecha especificada en función de la fecha local; siendo 0 (Domingo) el primer día.
+
+
+
+DIFERENCIA ENTRE QUERYSELECTOR Y QUERTSELECTOALL:
+La diferencia radica en que QUERYSELECTOR solo se trae a la primer coincidencia que encuentre. En cambio QUERTSELECTOALL trae a todas las coincidencias que existan.
+
+
+Node (DOM)
+En el contexto del DOM, un nodo es un único punto en el arbol de nodos. Los nodos pueden ser varias cosas el documento mismo, elementos, texto y comentarios.
+
+NodeList
+Los objetos NodeList son colecciones de nodos como los devueltos por propiedades como Node.childNodes y el método document.querySelectorAll ()..
+
+Nota: Aunque NodeList no es un Array, es posible iterar sobre él utilizando forEach(). También puede convertirse a un Array usando Array.from.
+
+En algunos casos, NodeList es una colección en vivo, lo que significa que los cambios en el DOM se reflejan en la colección.
+
+En otros casos, NodeList es una colección estática, lo que significa que cualquier cambio posterior en el DOM no afecta el contenido de la colección. document.querySelectorAll () devuelve un NodeList estático.
+
+Es bueno tener en cuenta esta distinción cuando elige cómo iterar sobre los elementos en NodeList, y cómo guarda en caché la longitud de la lista en particular.
+
+
+
+ELEMENT.APPEND()
+El Element.append() es un método que inserta un conjunto de Node objects o strings objects, después del último hijo del Elemento html. Los strings objects se insertan como Textnodos equivalentes.
+Dentro de los () recibe su parametro, que puede ser un elemento html creado desde JS con .createElement por ejemplo.
+
+Diferencias de Node.appendChild():
+Element.append() le permite agregar también objetos de cadena, mientras que Node.appendChild() solo acepta Node objetos.
+Element.append() no tiene valor de retorno, mientras que Node.appendChild() devuelve el Nodeobjeto adjunto.
+Element.append() puede agregar varios nodos y cadenas, mientras que Node.appendChild() solo puede agregar un nodo.
+
+
+DOCUMENT.CREATEELEMENT():
+document.createElement(' ') es un metodo del object document. Que sirve para crear elementos html desde JavaScript. Dentro de los (' ') se coloca la etiqueta html que deseamos crear, se puede utilizar de la siguiente manera:
+
+const $element = document.createElement('h2')
+
+$el.textContent = 'Hola mundo!'
+
+Una vez creado el elemento y almacenado directamente a una const en su creacion. Luego podemos utiliazar el metodo .textContent y asignarle lo que querramos a ese elemento.
+Por ultimo solo debemos empujarlo al html, como por ejemplo utilizando el .append.
+
+
+
+DOMParser:
+Es una API del navegador (es decir no es propia del lenguaje de js por lo que no lo vamos a encontrar en nodejs por ejemplo).
+La DOMParser interfaz proporciona la capacidad de analizar código fuente XML o HTML desde un string en un DOM
+
+Puede realizar la operación opuesta, QUE ES PARA LO QUE MAS SE OCUPA, (convertir un árbol DOM en una fuente HTML) usando la XMLSerializer interfaz.
+
+
+
+
+POINTER EVENT:
+pointerEvent es lo que utilizamos cuando queremos afectar tanto al evento de click cuando estamos en pc, como al evento de touch cuando estamos en mobile.
